@@ -10,7 +10,7 @@
 
 <body>
     <!-- Pagina De Inicio -->
-    <section>
+    <section id="pagina-one">
         <header class="header">
             <img src="./img/logo-tienda-virtual.png" alt="" id="logo" class="tienda">
             <h1>Tienda</h1>
@@ -28,6 +28,29 @@
         </main>
     </section>
 
+    <!-- Pagina Principal -->
+    <section id="pagina-principal">
+        <header id="header-two">
+            <img src="./img/logo-tienda-virtual.png" alt="" id="img-one">
+            <h1>Tienda</h1>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Buscar">
+                <button class="search-button" onclick="toggleDropdown()">
+                    <div class="search-arrow"></div>
+                </button>
+                <div class="categories-dropdown">
+                    <div class="category-item">Todas las categorías</div>
+                    <div class="category-item">Ropa para hombre</div>
+                    
+                    <div class="category-item">Ropa para mujer</div>
+                    <div class="category-item">Joyerias</div>
+                    <div class="category-item">Electrónica</div>
+                </div>
+            </div>
+            <img src="./img/logo-usuario.png" alt="" id="img-two">
+            <img src="./img/logo-compras.png" alt="" id="img-three">
+        </header>
+    </section>
 
     <script src="./JS/main.js"></script>
 </body>
