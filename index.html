@@ -1,57 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CarriExpress</title>
+    <title>CarriExpress - Tu Tienda Virtual</title>
+    <link rel="icon" href="./img/icono-pestaña.png" type="image/png">
     <link rel="stylesheet" href="./CSS/style.css">
-    <link rel="icon" href="./img/icono-pestaña.png" type="image/x-icon">
 </head>
-
 <body>
-    <!-- Pagina De Inicio -->
-    <section id="pagina-one">
-        <header class="header">
-            <img src="./img/logo-tienda-virtual.png" alt="" id="logo" class="tienda">
-            <h1>Tienda</h1>
-            <img src="./img/logo-usuario.png" alt="" id="logo">
-        </header>
-        <main>
-            <h1 class="first">Bienvenido usuario</h1>
-            <h2 class="second">Gracias por utulizar :</h2>
-            <h1 class="three">CarriExpress</h1>
-
-            <form action="">
-                <input type="text" placeholder="Digite su nombre"  required>
-                <button>Siguiente</button>
-            </form>
-        </main>
-    </section>
-
-    <!-- Pagina Principal -->
-    <section id="pagina-principal">
-        <header id="header-two">
-            <img src="./img/logo-tienda-virtual.png" alt="" id="img-one">
-            <h1>Tienda</h1>
-            <div class="search-container">
-                <input type="text" class="search-input" placeholder="Buscar">
-                <button class="search-button" onclick="toggleDropdown()">
-                    <div class="search-arrow"></div>
+    <!-- Pantalla de Bienvenida -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-container">
+            <div class="welcome-header">
+                <img src="./img/logo-tienda-virtual.png" alt="CarriExpress Logo" class="welcome-logo">
+                <h1 class="welcome-title">Bienvenido a CarriExpress</h1>
+                <p class="welcome-subtitle">Tu experiencia de compra premium te espera</p>
+            </div>
+            
+            <div class="welcome-form">
+                <div class="input-group">
+                    <label for="user-name" class="input-label">¿Cómo te llamas?</label>
+                    <input 
+                        type="text" 
+                        id="user-name" 
+                        class="name-input" 
+                        placeholder="Ingresa tu nombre..."
+                    >
+                </div>
+                <button id="continue-btn" class="continue-btn" disabled>
+                    Continuar
+                    <span class="btn-arrow">→</span>
                 </button>
-                <div class="categories-dropdown">
-                    <div class="category-item">Todas las categorías</div>
-                    <div class="category-item">Ropa para hombre</div>
-                    
-                    <div class="category-item">Ropa para mujer</div>
-                    <div class="category-item">Joyerias</div>
-                    <div class="category-item">Electrónica</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pantalla Principal de la Tienda -->
+    <div id="store-screen" class="store-screen hidden">
+        <!-- Header -->
+        <header class="store-header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="./attached_assets/logo-tienda-virtual_1750830654583.png" alt="CarriExpress" class="header-logo">
+                    <h1 class="header-title">CarriExpress</h1>
+                </div>
+                
+                <div class="user-section">
+                    <div class="user-info">
+                        <img src="./attached_assets/logo-usuario_1750830654583.png" alt="Usuario" class="user-avatar">
+                        <span id="user-name-display" class="user-name"></span>
+                    </div>
+                    <button id="cart-btn" class="cart-btn">
+                        <img src="./attached_assets/logo-compras_1750830654583.png" alt="Carrito" class="cart-icon">
+                        <span id="cart-count" class="cart-count">0</span>
+                    </button>
                 </div>
             </div>
-            <img src="./img/logo-usuario.png" alt="" id="img-two">
-            <img src="./img/logo-compras.png" alt="" id="img-three">
         </header>
-    </section>
 
-    <script src="./JS/main.js"></script>
+        <!-- Controles de Búsqueda y Filtros -->
+        <div class="controls-section">
+            <div class="search-container">
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Buscar productos..."
+                        class="search-input"
+                    >
+                    <button id="clear-search" class="clear-search hidden">×</button>
+                </div>
+            </div>
+            
+            <div class="filters-container">
+                <select id="category-filter" class="filter-select">
+                    <option value="">Todas las categorías</option>
+                </select>
+                
+                <select id="sort-select" class="filter-select">
+                    <option value="default">Ordenar por</option>
+                    <option value="price-asc">Precio: Menor a Mayor</option>
+                    <option value="price-desc">Precio: Mayor a Menor</option>
+                    <option value="name-asc">Nombre: A-Z</option>
+                    <option value="name-desc">Nombre: Z-A</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Contenido Principal -->
+        <main class="main-content">
+            <!-- Loading State -->
+            <div id="loading" class="loading">
+                <div class="loading-spinner"></div>
+                <p>Cargando productos...</p>
+            </div>
+
+            <!-- Error State -->
+            <div id="error-state" class="error-state hidden">
+                <div class="error-icon">⚠️</div>
+                <h3>Error al cargar productos</h3>
+                <p>No se pudieron cargar los productos. Por favor, intenta de nuevo.</p>
+                <button id="retry-btn" class="retry-btn">Reintentar</button>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="products-grid hidden">
+                <!-- Los productos se cargarán aquí dinámicamente -->
+            </div>
+
+            <!-- No Results -->
+            <div id="no-results" class="no-results hidden">
+                <div class="no-results-icon">🔍</div>
+                <h3>No se encontraron productos</h3>
+                <p>Intenta con otros términos de búsqueda o filtros diferentes.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal del Carrito -->
+    <div id="cart-modal" class="cart-modal hidden">
+        <div class="cart-overlay"></div>
+        <div class="cart-content">
+            <!-- Header del Carrito -->
+            <div class="cart-header">
+                <h2 class="cart-title">
+                    <img src="./attached_assets/logo-compras_1750830654583.png" alt="Carrito" class="cart-title-icon">
+                    Carrito de Compras
+                </h2>
+                <button id="close-cart" class="close-cart">×</button>
+            </div>
+
+            <!-- Contenido del Carrito -->
+            <div class="cart-body">
+                <!-- Estado Vacío -->
+                <div id="empty-cart" class="empty-cart">
+                    <img src="./attached_assets/logo-compras_1750830654583.png" alt="Carrito Vacío" class="empty-cart-icon">
+                    <h3>Tu carrito está vacío</h3>
+                    <p>Agrega productos para comenzar tu compra</p>
+                </div>
+
+                <!-- Lista de Productos -->
+                <div id="cart-items" class="cart-items hidden">
+                    <!-- Los items del carrito se cargarán aquí -->
+                </div>
+            </div>
+
+            <!-- Footer del Carrito -->
+            <div id="cart-footer" class="cart-footer hidden">
+                <!-- Resumen de Totales -->
+                <div class="cart-summary">
+                    <div class="summary-row">
+                        <span>SubTotal:</span>
+                        <span id="subtotal">US$ 0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Envío:</span>
+                        <span class="free-shipping">Gratis</span>
+                    </div>
+                    <div class="summary-total">
+                        <span>Total:</span>
+                        <span id="total">US$ 0.00</span>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción -->
+                <div class="cart-actions">
+                    <button id="clear-cart" class="btn-clear">
+                        🗑️ Vaciar
+                    </button>
+                    <button id="checkout-btn" class="btn-checkout">
+                        🛒 Comprar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notificaciones -->
+    <div id="notification" class="notification hidden">
+        <div class="notification-content">
+            <span class="notification-icon">✓</span>
+            <span id="notification-text"></span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
