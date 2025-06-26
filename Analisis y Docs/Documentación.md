@@ -34,9 +34,8 @@
 
 La versión desktop presenta una interfaz limpia con:
 - Header fijo con navegación principal
-- Grid de 3 columnas para productos
+- Grid de 4 columnas para productos
 - Sidebar de carrito desplegable
-- Footer con información adicional
 
 ### Vista Mobile
 ![Maquetación Mobile](../img/cellphone.png)
@@ -56,9 +55,8 @@ La versión móvil optimiza la experiencia táctil con:
 | Color | Hex | Uso | Justificación |
 |-------|-----|-----|---------------|
 | 🟢 Turquesa Principal | `#4ECDC4` | Headers, botones primarios | Transmite confianza y modernidad. Color psicológicamente asociado con la calidad y la innovación tecnológica. |
-| 🟡 Beige/Crema | `#F5F5DC` | Fondo principal | Proporciona neutralidad visual que no compite con productos. Reduce fatiga ocular en sesiones largas. |
 | ⚫ Negro | `#000000` | Texto principal | Máximo contraste para legibilidad óptima (ratio 21:1 con fondo beige). |
-| 🔵 Turquesa Oscuro | `#45B7B8` | Estados hover, elementos secundarios | Variación tonal que mantiene coherencia cromática. |
+
 
 ---
 **Justificación**: Se seleccionó una fuente sans-serif moderna (Inter/System UI) por su:
@@ -127,9 +125,6 @@ CarriExpress/
 │   ├── Lista de Productos
 │   ├── Cálculo de Totales
 │   └── Botones de Acción
-└── 📄 Footer
-    ├── Enlaces Informativos
-    └── Información de Contacto
 ```
 
 ---
@@ -227,7 +222,6 @@ CarriExpress/
 1. **Botón de CTA**: "Agregar al Carrito" vs "Comprar Ahora"
 2. **Layout de Grid**: 3 vs 4 columnas en desktop
 3. **Posición de Filtros**: Sidebar vs Top bar
-4. **Colores de Botón**: Turquesa vs Naranja
 
 
 ---

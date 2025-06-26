@@ -53,10 +53,6 @@ fake-store-app/
 │   └── font.css        # 🎨 Fuente de letras utilizadas
 ├── js/
 │   ├── main.js         # 🚀 Punto de entrada de la aplicación
-│   ├── api.js          # 🌐 Lógica de consumo de API
-│   ├── cart.js         # 🛍 Gestión del carrito y localStorage
-│   ├── dom.js          # 📱 Utilidades para renderizado del DOM
-│   └── events.js       # 🎯 Manejadores de eventos
 ├── README.md           # 📖 Documentación del proyecto
 ├── Analisis y Docs
 │   ├── readme.md       # 📖 Documentación del paso a paso del proyecto
@@ -86,7 +82,7 @@ fake-store-app/
 1. Abre la aplicación en tu navegador.
 2. Explora el catálogo de productos de la API Fake Store.
 3. Busca productos con la barra de búsqueda intuitiva.
-4. Filtra por categoría o ordena por precio/nombre usando menús desplegables.
+4. Filtra por categoría o ordena nombre usando menús desplegables.
 5. Agrega productos al carrito con un solo clic.
 6. Revisa el carrito para ver los productos, el precio total o eliminar elementos.
 7. Navega con una interfaz fluida y responsiva en cualquier dispositivo.
@@ -123,11 +119,7 @@ fake-store-app/
 
 ### 🧩 Organización del Código
 - Modularizado en archivos separados:
-  - `api.js`: Solicitudes y procesamiento de la API.
-  - `cart.js`: Lógica del carrito y persistencia.
-  - `dom.js`: Creación y actualización del DOM.
-  - `events.js`: Manejadores de eventos.
-  - `main.js`: Inicializa la app y coordina módulos.
+- `main.js`: Inicializa la app y coordina módulos.
 - Código claro, mantenible y escalable.
 
 ### 🎨 Diseño Responsivo y Usabilidad

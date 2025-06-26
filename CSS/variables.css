@@ -2,13 +2,3 @@
     font-family: "nombre-page";
     src: url(../Fonts/nombre-page.ttf);
 }
-
-@font-face {
-    font-family: "page-inicio";
-    src: url(../Fonts/page-inicio.otf);
-}
-
-@font-face {
-    font-family: "predeterminada";
-    src: url(../Fonts/predeterminada.ttf);
-}
