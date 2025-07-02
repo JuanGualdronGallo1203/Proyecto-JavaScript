@@ -5,123 +5,174 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Tienda Virtual | CarriExpress</title>
+    <meta name="description" content="CarriExpress - Tu tienda virtual de confianza con los mejores productos">
+    <meta name="keywords" content="tienda virtual, compras online, ecommerce, productos">
+    <link rel="stylesheet" href="./CSS/style.css">
+    <link rel="icon" href="./img/icono-pestaña.png">
 </head>
-<link rel="stylesheet" href="./CSS/style.css">
-<link rel="icon" href="./img/icono-pestaña.png">
 
 <body>
-    <!-- Encabezado -->
-    <header>
+    <!-- Encabezado Principal -->
+    <header class="header">
         <div class="container">
             <div class="header-content">
+                <!-- Sección del Logo -->
                 <div class="logo-section">
-                    <div class="logo-icon">🛍️</div>
-                    <h1>CarriExpress</h1>
+                    <div class="logo-icon" aria-label="Icono de CarriExpress">🛍️</div>
+                    <h1 class="logo-title">CarriExpress</h1>
                 </div>
+                
+                <!-- Acciones del Header -->
                 <div class="header-actions">
-                    <button class="carrito-toggle" id="carrito-toggle" onclick="toggleCarrito()">
-                        <img src="./img/logo-compras.png" alt="" id="compras">
-                        <span class="carrito-badge hidden" id="carrito-badge">0</span>
+                    <!-- Botón del Carrito -->
+                    <button 
+                        class="carrito-toggle" 
+                        id="carrito-toggle" 
+                        aria-label="Abrir carrito de compras"
+                        aria-expanded="false"
+                    >
+                        <img src="./img/logo-compras.png" alt="Carrito de compras" class="carrito-icon">
+                        <span class="carrito-badge hidden" id="carrito-badge" aria-label="Productos en carrito">0</span>
                     </button>
-                    <div class="user-actions">
-                        <div class="user-icon">
-                            <img src="./img/logo-usuario.png" alt="" id="log">
+                    
+                    <!-- Sección del Usuario -->
+                    <div class="user-section">
+                        <div class="user-icon" aria-label="Usuario">
+                            <img src="./img/logo-usuario.png" alt="Usuario" class="user-avatar">
                         </div>
-                        <button class="btn-cerrar-sesion" id="btn-cerrar-sesion" onclick="cerrarSesion()">
+                        <button 
+                            class="btn-cerrar-sesion" 
+                            id="btn-cerrar-sesion"
+                            aria-label="Cerrar sesión actual"
+                        >
                             Cerrar Sesión
                         </button>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Overlay para cerrar carrito -->
-        <div id="carrito-overlay" class="carrito-overlay" onclick="toggleCarrito()"></div>
-
-        <!-- Carrito de Compras Lateral -->
-        <aside id="carrito-container" class="carrito-container">
-            <div class="carrito-header">
-                <div class="carrito-title">🛒 Mi Carrito</div>
-                <div class="contador-badge" id="contador-carrito">0</div>
-            </div>
-
-            <div class="carrito-contenido" id="carrito-contenido">
-                <div class="carrito-vacio">
-                    <div class="carrito-vacio-icon">🛒</div>
-                    <p>Tu carrito está vacío</p>
-                    <small>Agrega productos para comenzar</small>
-                </div>
-            </div>
-
-            <div class="carrito-footer">
-                <div class="carrito-total">
-                    Total: $<span id="total-carrito">0.00</span>
-                </div>
-
-                <div class="carrito-botones">
-                    <button class="btn-comprar" onclick="hacerCompra()">
-                        💳 Hacer Compra
-                    </button>
-                    <button class="btn-vaciar" onclick="vaciarCarrito()">
-                        🗑️ Vaciar Carrito
-                    </button>
-                </div>
-            </div>
-        </aside>
     </header>
 
-    <!-- Contenido Principal -->
-    <main class="container">
-        <!-- Página de Inicio -->
-        <section id="pagina-inicio" class="inicio-form">
-            <h2>¡Bienvenido!</h2>
-            <p>Ingresa tu nombre para comenzar a comprar</p>
-            <form id="formulario-nombre">
-                <input type="text" id="nombre-input" placeholder="Escribe tu nombre aquí..." required minlength="2" />
-                <button type="submit">Comenzar a Comprar</button>
-            </form>
-        </section>
+    <!-- Overlay para cerrar carrito -->
+    <div id="carrito-overlay" class="carrito-overlay" aria-hidden="true"></div>
 
-        <!-- Página Principal -->
-        <section id="pagina-principal" class="hidden">
-            <div id="mensaje-bienvenida" class="mensaje-bienvenida"></div>
-
-            <!-- Filtros y Búsqueda -->
-            <div class="filtros-container">
-                <div class="filtros-grid">
-                    <input type="text" id="busqueda-input" placeholder="🔍 Buscar productos..." />
-                    <select id="categoria-select">
-                        <option value="">📂 Todas las categorías</option>
-                    </select>
-                    <select id="ordenamiento-select">
-                        <option value="default">🔄 Orden predeterminado</option>
-                        <option value="precioAsc">💰 Precio: Menor a Mayor</option>
-                        <option value="precioDesc">💎 Precio: Mayor a Menor</option>
-                        <option value="nombreAsc">🔤 Nombre: A - Z</option>
-                        <option value="nombreDesc">🔠 Nombre: Z - A</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- Contenedor de Productos -->
-            <div id="productos-container">
-                <div class="loading">Cargando productos...</div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Carrito de Compras -->
-    <aside id="carrito-container" class="carrito-container">
+    <!-- Carrito de Compras Lateral -->
+    <aside id="carrito-container" class="carrito-container" aria-label="Carrito de compras" aria-hidden="true">
+        <!-- Header del Carrito -->
         <div class="carrito-header">
-            <div class="carrito-title">🛒 Mi Carrito</div>
-            <div class="contador-badge" id="contador-carrito">0</div>
+            <div class="carrito-title-section">
+                <div class="contador-badge" id="contador-carrito" aria-label="Total de productos">0</div>
+            </div>
+            <button 
+                class="carrito-close-btn" 
+                id="carrito-close-btn"
+                aria-label="Cerrar carrito"
+            >
+                ✕
+            </button>
         </div>
+
+        <!-- Contenido del Carrito -->
         <div class="carrito-contenido" id="carrito-contenido">
-            <div class="carrito-vacio">Tu carrito está vacío</div>
-        </div>
-        <div class="carrito-total">
-            Total: $<span id="total-carrito">0.00</span>
+            <div class="carrito-vacio">
+                <div class="carrito-vacio-icon" aria-hidden="true">🛒</div>
+                <p class="carrito-vacio-text">Tu carrito está vacío</p>
+                <small class="carrito-vacio-subtext">Agrega productos para comenzar</small>
+            </div>
         </div>
     </aside>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Página de Inicio -->
+            <section id="pagina-inicio" class="inicio-section">
+                <div class="inicio-form">
+                    <div class="inicio-header">
+                        <h2 class="inicio-title">¡Bienvenido a CarriExpress!</h2>
+                        <p class="inicio-subtitle">Ingresa tu nombre para comenzar a comprar</p>
+                    </div>
+                    
+                    <form id="formulario-nombre" class="nombre-form" novalidate>
+                        <div class="input-group">
+                            <label for="nombre-input" class="sr-only">Nombre completo</label>
+                            <input 
+                                type="text" 
+                                id="nombre-input" 
+                                class="nombre-input"
+                                placeholder="Escribe tu nombre aquí..." 
+                                required 
+                                minlength="2"
+                                maxlength="50"
+                                autocomplete="given-name"
+                                aria-describedby="nombre-error"
+                            />
+                            <div id="nombre-error" class="error-message" aria-live="polite"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn-comenzar">
+                            <span class="btn-icon" aria-hidden="true">🚀</span>
+                            <span class="btn-text">Comenzar a Comprar</span>
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Página Principal -->
+            <section id="pagina-principal" class="principal-section hidden">
+                <!-- Mensaje de Bienvenida -->
+                <div id="mensaje-bienvenida" class="mensaje-bienvenida" role="banner"></div>
+
+                <!-- Filtros y Búsqueda -->
+                <div class="filtros-container">
+                    <div class="filtros-grid">
+                        <!-- Campo de Búsqueda -->
+                        <div class="search-group">
+                            <label for="busqueda-input" class="sr-only">Buscar productos</label>
+                            <input 
+                                type="search" 
+                                id="busqueda-input" 
+                                class="search-input"
+                                placeholder="🔍 Buscar productos..." 
+                                autocomplete="off"
+                                aria-label="Buscar productos por nombre o descripción"
+                            />
+                        </div>
+                        
+                        <!-- Selector de Categoría -->
+                        <div class="select-group">
+                            <label for="categoria-select" class="sr-only">Filtrar por categoría</label>
+                            <select id="categoria-select" class="categoria-select" aria-label="Seleccionar categoría">
+                                <option value="">📂 Todas las categorías</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Selector de Ordenamiento -->
+                        <div class="select-group">
+                            <label for="ordenamiento-select" class="sr-only">Ordenar productos</label>
+                            <select id="ordenamiento-select" class="ordenamiento-select" aria-label="Ordenar productos por">
+                                <option value="default">🔄 Orden predeterminado</option>
+                                <option value="precioAsc">💰 Precio: Menor a Mayor</option>
+                                <option value="precioDesc">💎 Precio: Mayor a Menor</option>
+                                <option value="nombreAsc">🔤 Nombre: A - Z</option>
+                                <option value="nombreDesc">🔠 Nombre: Z - A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenedor de Productos -->
+                <div id="productos-container" class="productos-container" role="main" aria-label="Lista de productos">
+                    <div class="loading-state">
+                        <div class="loading-spinner" aria-hidden="true"></div>
+                        <p class="loading-text">Cargando productos...</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Scripts -->
     <script src="./JS/main.js"></script>
 </body>
 
