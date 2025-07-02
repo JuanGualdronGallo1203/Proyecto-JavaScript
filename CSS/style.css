@@ -414,6 +414,21 @@ body {
     margin-bottom: 1.5rem;
 }
 
+.producto-favorito{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 2rem;
+    height: 2rem;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
 .producto-btn {
     width: 100%;
     background: linear-gradient(135deg, #10b981, #059669);
